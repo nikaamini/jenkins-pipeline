@@ -22,14 +22,14 @@ pipeline{
     }
         stage("Code analyse"){
             steps{
-            echo "Analysing code..."
-            eco "code analyse tool: SonarQube"
+                echo "Analysing code..."
+                eco "code analyse tool: SonarQube"
         }
     }
         stage("Security scan"){
             steps{
-            echo "Analysing code..."
-            eco "Security scan tool: Checkmarx"
+                echo "Analysing code..."
+                eco "Security scan tool: Checkmarx"
         }
         post{
             success{
@@ -41,13 +41,13 @@ pipeline{
     }
         stage("Integration Tests on Staging "){
             steps{
-            echo "Testing stages..."
+                echo "Testing stages..."
         }
     }
         stage("Deploy"){
             steps{
-            echo "Deploying..."
-            eco "Production server: AWS EC2"
+                echo "Deploying..."
+                eco "Production server: AWS EC2"
         }
     }
         
