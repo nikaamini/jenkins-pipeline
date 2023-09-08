@@ -1,9 +1,16 @@
 pipeline{
     agent any
     stages{
-        stage("build"){
+        stage("Build"){
         steps{
-            echo "building..."
+            echo "Building..."
+            echo "Build automation tool: Maven"
+        }
+    }
+        stage("Unit and Integration Test"){
+        steps{
+            echo"Running tests..."
+            echo "Test automation tool: Katalon"
         }
         post{
             success{
@@ -12,6 +19,37 @@ pipeline{
                 body: "build was successful!"
             }
         }
+    }
+        stage("Code analyse"){
+            steps{
+            echo "Analysing code..."
+            eco "code analyse tool: SonarQube"
         }
+    }
+        stage("Security scan"){
+            steps{
+            echo "Analysing code..."
+            eco "Security scan tool: Checkmarx"
+        }
+        post{
+            success{
+                mail to: "nikaamini1380@gmail.com",
+                subject: "build status email",
+                body: "build was successful!"
+            }
+        }
+    }
+        stage("Integration Tests on Staging "){
+            steps{
+            echo "Testing stages..."
+        }
+    }
+        stage("Deploy"){
+            steps{
+            echo "Deploying..."
+            eco "Production server: AWS EC2"
+        }
+    }
+        
         }
     }
